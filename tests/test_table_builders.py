@@ -16,8 +16,10 @@ def test_simple_2x2_text_table():
     builder.set_headers(['Anna', 'Kalle'])
     builder.add_row(['1', '2'])
     builder.add_row(['3', '4'])
-    # TODO: Fill in expected string below!
-    expected = ''
+    expected = '''      Anna     Kalle
+         1         2
+         3         4
+'''
     got = builder.get_string_output()
     assert expected == got
 

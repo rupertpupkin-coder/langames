@@ -60,13 +60,22 @@ class CsvTableBuilder:
     """Produces an output string with comma separated values to written to file"""
 
     def __init__(self):
-        pass
+        self.rows = []
 
     def set_headers(self, column_headers):
-        pass
+        self.headers = column_headers
 
     def add_row(self, cells):
-        pass
+        self.rows.append(cells)
 
     def get_csv_text(self):
-        pass
+        rows_csv = self._get_row_csv(self.headers)
+        for row in self.rows:
+            rows_csv += self._get_row_csv(row)
+        return f"\n{rows_csv}\n"
+
+    def _get_row_csv(self, cells):
+        cells_csv = ""
+        for cell in cells:
+            cells_csv += f"{cell}"
+        return f"{cells_csv}\n"
