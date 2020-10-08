@@ -63,19 +63,11 @@ class CsvTableBuilder:
         self.rows = []
 
     def set_headers(self, column_headers):
-        self.headers = column_headers
+        self.headers = ",".join(column_headers)
 
     def add_row(self, cells):
-        self.rows.append(cells)
+        self.rows.append(",".join(cells))
 
     def get_csv_text(self):
-        rows_csv = self._get_row_csv(self.headers)
-        for row in self.rows:
-            rows_csv += self._get_row_csv(row)
-        return f"\n{rows_csv}\n"
+        return self.headers + "\n" + "\n".join(self.rows)
 
-    def _get_row_csv(self, cells):
-        cells_csv = ""
-        for cell in cells:
-            cells_csv += f"{cell}"
-        return f"{cells_csv}\n"
